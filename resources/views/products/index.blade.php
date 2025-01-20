@@ -5,7 +5,17 @@
 
 @section('content')
 <div>
-  <input type="text" class="form-control mb-3" placeholder="Search products...">
+  <!-- Search Form -->
+  <form method="GET" action="{{ route('products.index') }}" class="mb-3">
+    <input 
+      type="text" 
+      name="search" 
+      class="form-control" 
+      placeholder="Search products.." 
+      value="{{ $search ?? '' }}"  
+    >
+  </form>
+  
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -32,8 +42,8 @@
       <td>{{ $product->price }}</td>
       <td>{{ $product->quantity }}
         @if($product->quantity < $product->low_stock_threshold)
-        <span class="text-danger">Low Stock</span>
-      @endif
+      <span class="text-danger">Low Stock</span>
+    @endif
       </td>
       <td>
         <!-- View button to redirect to the product view page -->
